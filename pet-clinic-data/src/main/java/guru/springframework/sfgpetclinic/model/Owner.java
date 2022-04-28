@@ -44,7 +44,8 @@ public class Owner extends Person {
 
     @Override
     public String toString() {
-        return "Owner{" +
+        return "Owner{ " +
+                super.toString() + " " +
                 "address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", telephone='" + telephone + '\'' +
