@@ -26,6 +26,16 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // only load on no pet types in db
+
+        int count = petService.findAll().size();
+        if(count == 0) {
+            System.out.println("No Pet Types found, inserting static data...");
+            loadData();
+        }
+    }
+
+    private void loadData() {
         // PET TYPES
         PetType dogType = new PetType();
         dogType.setName("Dog");
@@ -88,6 +98,7 @@ public class DataLoader implements CommandLineRunner {
         Specialty savedCanineHusbandry = specialtyService.save(canineHusbandry);
         Specialty savedTaxidermy = specialtyService.save(taxidermy);
 
+        // VETS
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
