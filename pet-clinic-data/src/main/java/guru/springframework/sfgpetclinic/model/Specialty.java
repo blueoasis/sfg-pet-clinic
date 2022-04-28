@@ -23,7 +23,8 @@ public class Specialty extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Specialty{" +
+        return "Specialty{ " +
+                super.toString() + " " +
                 "description='" + description + '\'' +
                 '}';
     }
