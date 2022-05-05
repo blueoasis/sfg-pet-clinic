@@ -5,11 +5,13 @@ import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.service.OwnerService;
 import guru.springframework.sfgpetclinic.service.PetService;
 import guru.springframework.sfgpetclinic.service.PetTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Slf4j
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;

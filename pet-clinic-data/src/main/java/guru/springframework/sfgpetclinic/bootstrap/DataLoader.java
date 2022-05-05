@@ -2,12 +2,14 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.service.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
+@Slf4j
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
@@ -15,7 +17,7 @@ public class DataLoader implements CommandLineRunner {
     private final PetService petService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
-    
+
     public DataLoader(OwnerService ownerService, VetService vetService, PetService petService, PetTypeService petTypeService, SpecialtyService specialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
@@ -28,9 +30,10 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // only load on no pet types in db
 
-        int count = petService.findAll().size();
-        if(count == 0) {
-            System.out.println("No Pet Types found, inserting static data...");
+        int count = petService.findAll()
+                .size();
+        if (count == 0) {
+            log.debug("No Pet Types found, inserting static data...");
             loadData();
         }
     }
@@ -54,19 +57,27 @@ public class DataLoader implements CommandLineRunner {
         PetType savedLizardType = petTypeService.save(lizardType);
 
         // PETS
-        Pet dog1 = new Pet(savedDogType);
-        dog1.setName("Fido");
-        dog1.setBirthDate(LocalDate.of(2003,12,01));
+        Pet dog1 = Pet.builder()
+                .petType(savedDogType)
+                .name("Fido")
+                .birthDate(LocalDate.of(2003, 12, 01))
+                .build();
 
-        Pet cat1 = new Pet(savedCatType);
-        cat1.setName("Sally");
-        cat1.setBirthDate(LocalDate.of(2013,07,13));
+        Pet cat1 = Pet.builder()
+                .petType(savedCatType)
+                .name("Sally")
+                .birthDate(LocalDate.of(2013, 07, 13))
+                .build();
+
+        log.debug("## Pet 1: " + dog1);
+        log.debug("## Pet 2: " + cat1);
 
         // OWNERS
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
-        owner1.getPets().add(dog1);
+        owner1.getPets()
+                .add(dog1);
         owner1.setAddress("111 Maple St");
         owner1.setCity("Mayberry");
         owner1.setTelephone("3032221111");
@@ -80,14 +91,15 @@ public class DataLoader implements CommandLineRunner {
         owner2.setAddress("123 Brickerel St");
         owner2.setCity("Miami");
         owner2.setTelephone("7201113333");
-        owner2.getPets().add(cat1);
+        owner2.getPets()
+                .add(cat1);
 
         ownerService.save(owner2);
 
-        System.out.println("Loaded Owners...");
+        log.debug("## Loaded Owners...");
 
-        System.out.println("owner1: " + owner1);
-        System.out.println("owner2: " + owner2);
+        log.debug("## owner1: " + owner1);
+        log.debug("## owner2: " + owner2);
 
         // SPECIALTIES
         Specialty lovesDogs = new Specialty("Loves Dogs");
@@ -102,21 +114,24 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
-        vet1.getSpecialties().add(savedLovesDogs);
-        vet1.getSpecialties().add(savedCanineHusbandry);
+        vet1.getSpecialties()
+                .add(savedLovesDogs);
+        vet1.getSpecialties()
+                .add(savedCanineHusbandry);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Jack");
         vet2.setLastName("Trombone");
-        vet2.getSpecialties().add(savedTaxidermy);
+        vet2.getSpecialties()
+                .add(savedTaxidermy);
 
         vetService.save(vet2);
 
-        System.out.println("Loaded Vets...");
-        System.out.println("vet1: " + vet1);
-        System.out.println("vet2: " + vet2);
+        log.debug("Loaded Vets...");
+        log.debug("vet1: " + vet1);
+        log.debug("vet2: " + vet2);
     }
 }
 

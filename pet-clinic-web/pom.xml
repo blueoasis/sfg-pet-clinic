@@ -60,6 +60,10 @@
             <artifactId>font-awesome</artifactId>
             <version>${webjars-font-awesome.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!-- end of webjars -->
 
     </dependencies>

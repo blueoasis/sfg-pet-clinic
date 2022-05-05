@@ -1,31 +1,16 @@
 package guru.springframework.sfgpetclinic.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Specialty extends BaseEntity implements Serializable {
-
     private String description;
-
-    public Specialty() {
-    }
-
-    public Specialty(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Specialty{ " +
-                super.toString() + " " +
-                "description='" + description + '\'' +
-                '}';
-    }
 }
