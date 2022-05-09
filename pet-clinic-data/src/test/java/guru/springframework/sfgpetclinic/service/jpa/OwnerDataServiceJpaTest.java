@@ -16,7 +16,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class OwnerJpaDataServiceTest {
+class OwnerDataServiceJpaTest {
 
     @Mock
     OwnerRepository ownerRepository;
@@ -25,12 +25,12 @@ class OwnerJpaDataServiceTest {
     @Mock
     PetTypeRepository petTypeRepository;
 
-    OwnerJpaDataService ownerService;
+    OwnerDataServiceJpa ownerService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        this.ownerService = new OwnerJpaDataService(ownerRepository,petRepository,petTypeRepository);
+        this.ownerService = new OwnerDataServiceJpa(ownerRepository,petRepository,petTypeRepository);
         Set<Owner> owners = new HashSet<>();
         Owner john = Owner.builder().firstName("John").lastName("Jones").id(1L).build();
         Owner mark = Owner.builder().firstName("Mark").lastName("Adams").id(2L).build();

@@ -13,13 +13,13 @@ import java.util.Set;
 
 @Service
 @Profile("jpa")
-public class OwnerJpaDataService implements OwnerService {
+public class OwnerDataServiceJpa implements OwnerService {
 
     private final OwnerRepository ownerRepository;
     private final PetRepository petRepository;
     private final PetTypeRepository petTypeRepository;
 
-    public OwnerJpaDataService(OwnerRepository ownerRepository, PetRepository petRepository, PetTypeRepository petTypeRepository) {
+    public OwnerDataServiceJpa(OwnerRepository ownerRepository, PetRepository petRepository, PetTypeRepository petTypeRepository) {
         this.ownerRepository = ownerRepository;
         this.petRepository = petRepository;
         this.petTypeRepository = petTypeRepository;
