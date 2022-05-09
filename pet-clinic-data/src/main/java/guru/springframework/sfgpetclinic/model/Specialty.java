@@ -1,16 +1,21 @@
 package guru.springframework.sfgpetclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Specialty extends BaseEntity implements Serializable {
+@Entity
+@Table(name = "specialties")
+public class Specialty extends BaseEntity {
+
+    @Column(name = "description")
     private String description;
+
 }
