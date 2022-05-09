@@ -11,7 +11,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "owners")
-@ToString
 public class Owner extends Person {
     @Builder
     public Owner(Long id, String firstName, String lastName, String address, String city,
@@ -68,5 +67,15 @@ public class Owner extends Person {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                super.toString() + " " +
+                "address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", telephone='" + telephone + '\'' +
+                '}';
     }
 }

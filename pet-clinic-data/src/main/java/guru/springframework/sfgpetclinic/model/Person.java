@@ -10,7 +10,6 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-@ToString
 public class Person extends BaseEntity{
 
     public Person(Long id, String firstName, String lastName) {
@@ -24,4 +23,13 @@ public class Person extends BaseEntity{
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                super.toString() + " " +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
