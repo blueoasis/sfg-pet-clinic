@@ -2,4 +2,4 @@
 
 SFG Pet Clinic
 
-[![CircleCI](https://circleci.com/gh/blueoasis/sfg-pet-clinic.svg)](https://circleci.com/gh/blueoasis/sfg-pet-clinic)
+Status: [![CircleCI](https://circleci.com/gh/blueoasis/sfg-pet-clinic/tree/main.svg?style=svg)](https://circleci.com/gh/blueoasis/sfg-pet-clinic/tree/main)
