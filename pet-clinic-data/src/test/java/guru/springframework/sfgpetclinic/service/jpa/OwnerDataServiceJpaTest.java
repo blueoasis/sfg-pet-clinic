@@ -29,7 +29,7 @@ class OwnerDataServiceJpaTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.initMocks(this);
         this.ownerService = new OwnerDataServiceJpa(ownerRepository,petRepository,petTypeRepository);
         Set<Owner> owners = new HashSet<>();
         Owner john = Owner.builder().firstName("John").lastName("Jones").id(1L).build();
