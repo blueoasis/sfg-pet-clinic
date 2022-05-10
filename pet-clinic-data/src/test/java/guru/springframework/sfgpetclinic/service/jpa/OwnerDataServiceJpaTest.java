@@ -80,7 +80,7 @@ class OwnerDataServiceJpaTest {
         ownerRepository.delete(Owner.builder()
                 .build());
 
-        verify(ownerRepository).delete(any());
+        verify(ownerRepository,times(5)).delete(any());
     }
 
     @Test
